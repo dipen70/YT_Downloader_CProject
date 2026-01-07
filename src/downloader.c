@@ -3,7 +3,7 @@
 #include <string.h>
 #include "downloader.h"
 
-#define CMD_SIZE 4096
+#define CMD_SIZE 4096 // this helps accommodate long commands
 
 #define YTDLP_PATH "yt-dlp"
 
@@ -17,7 +17,7 @@ static int run_command(const char *command) {
 
     char cmdline[CMD_SIZE];
     
-    // We use cmd.exe /S /C to execute the command. 
+    // We use cmd.exe /S /C to execute the command. with /S to ensure proper handling of quotes. and /C to carry out the command and then terminate.
     // The extra quotes around %s are crucial for handling paths with spaces.
     snprintf(cmdline, CMD_SIZE, "cmd.exe /S /C \"%s\"", command);
 
